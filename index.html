@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate secure passwords online with customizable options. 100% free & safe.">
+    <meta name="keywords" content="free password generator, secure password, random password, strong password">
+    <title>Free Password Generator – Create Strong & Secure Passwords</title>
+    <link rel="canonical" href="https://yourdomain.com/">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Free Password Generator – Create Strong & Secure Passwords</h1>
+        <p class="subtitle">Generate secure passwords online with customizable options. 100% free & safe.</p>
+    </header>
+
+    <main>
+        <section id="generator" aria-label="Password Generator">
+            <div class="generator-container">
+                <!-- Password Display -->
+                <div class="password-display-section">
+                    <div class="password-display" aria-live="polite" aria-atomic="true">
+                        <input 
+                            type="text" 
+                            id="password-output" 
+                            class="password-output" 
+                            readonly 
+                            aria-label="Generated password"
+                            placeholder="Click Generate to create a password"
+                        >
+                        <button 
+                            id="toggle-visibility" 
+                            class="icon-button" 
+                            aria-label="Toggle password visibility"
+                            title="Show/Hide password"
+                        >
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path class="eye-open" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle class="eye-open" cx="12" cy="12" r="3"></circle>
+                                <path class="eye-closed" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" style="display: none;"></path>
+                                <line class="eye-closed" x1="1" y1="1" x2="23" y2="23" style="display: none;"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="action-buttons">
+                        <button 
+                            id="copy-button" 
+                            class="primary-button" 
+                            aria-label="Copy password to clipboard"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span>Copy</span>
+                        </button>
+                        <button 
+                            id="generate-button" 
+                            class="primary-button" 
+                            aria-label="Generate new password"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                            <span>Generate</span>
+                        </button>
+                    </div>
+                    <div id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></div>
+                </div>
+
+                <!-- Strength Meter -->
+                <div class="strength-meter-section" aria-label="Password strength indicator">
+                    <label id="strength-label">Password Strength:</label>
+                    <div class="strength-bar-container" aria-describedby="strength-label">
+                        <div id="strength-bar" class="strength-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span id="strength-text" class="strength-text">Not generated yet</span>
+                </div>
+
+                <!-- Configuration Controls -->
+                <div class="config-section">
+                    <h2>Password Options</h2>
+                    
+                    <!-- Length Slider -->
+                    <div class="config-group">
+                        <label for="length-slider">
+                            Password Length: <span id="length-value">16</span>
+                        </label>
+                        <input 
+                            type="range" 
+                            id="length-slider" 
+                            min="4" 
+                            max="64" 
+                            value="16" 
+                            aria-label="Password length"
+                            aria-valuemin="4"
+                            aria-valuemax="64"
+                            aria-valuenow="16"
+                        >
+                    </div>
+
+                    <!-- Character Type Options -->
+                    <div class="config-group">
+                        <fieldset>
+                            <legend>Character Types</legend>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="include-uppercase" 
+                                    checked 
+                                    aria-label="Include uppercase letters"
+                                >
+                                <span>Uppercase (A-Z)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="include-lowercase" 
+                                    checked 
+                                    aria-label="Include lowercase letters"
+                                >
+                                <span>Lowercase (a-z)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="include-numbers" 
+                                    checked 
+                                    aria-label="Include numbers"
+                                >
+                                <span>Numbers (0-9)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="include-special" 
+                                    checked 
+                                    aria-label="Include special characters"
+                                >
+                                <span>Special Characters (!@#$...)</span>
+                            </label>
+                        </fieldset>
+                    </div>
+
+                    <!-- Custom Special Characters -->
+                    <div class="config-group">
+                        <label for="custom-special">
+                            Custom Special Characters (optional)
+                        </label>
+                        <input 
+                            type="text" 
+                            id="custom-special" 
+                            placeholder="e.g., !@#$%^&*"
+                            aria-label="Custom special characters"
+                        >
+                    </div>
+
+                    <!-- Additional Options -->
+                    <div class="config-group">
+                        <fieldset>
+                            <legend>Additional Options</legend>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="exclude-similar" 
+                                    aria-label="Exclude similar characters"
+                                >
+                                <span>Exclude Similar Characters (l, I, 1, O, 0)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="allow-duplicates" 
+                                    checked 
+                                    aria-label="Allow duplicate characters"
+                                >
+                                <span>Allow Duplicate Characters</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="include-spaces" 
+                                    aria-label="Include spaces"
+                                >
+                                <span>Include Spaces</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    id="auto-copy" 
+                                    aria-label="Auto-copy generated passwords"
+                                >
+                                <span>Auto-Copy Generated Passwords</span>
+                            </label>
+                        </fieldset>
+                    </div>
+
+                    <!-- Password Count -->
+                    <div class="config-group">
+                        <label for="password-count">
+                            Number of Passwords to Generate
+                        </label>
+                        <input 
+                            type="number" 
+                            id="password-count" 
+                            min="1" 
+                            max="10" 
+                            value="1" 
+                            aria-label="Number of passwords to generate"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password History -->
+                <div class="history-section">
+                    <div class="history-header">
+                        <h2>Recent Passwords</h2>
+                        <button 
+                            id="clear-history" 
+                            class="secondary-button" 
+                            aria-label="Clear password history"
+                        >
+                            Clear All
+                        </button>
+                    </div>
+                    <ul id="history-list" class="history-list" aria-label="Password history"></ul>
+                    <p class="history-empty" id="history-empty">No passwords generated yet</p>
+                </div>
+
+                <!-- Security Notice -->
+                <div class="security-notice" role="note">
+                    <strong>🔒 Your Privacy is Protected:</strong> All passwords are generated locally in your browser using cryptographically secure methods. Nothing is stored or transmitted to any server.
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Placement 1 -->
+        <aside id="ad-placement-1" class="ad-container" aria-label="Advertisement">
+            <!-- AdSense ad unit will be placed here -->
+            <div class="ad-placeholder">Advertisement</div>
+        </aside>
+
+        <!-- Security Information -->
+        <section id="security-info" class="content-section">
+            <h2>How to Create Strong Password</h2>
+            <p>Creating a strong password is essential for protecting your online accounts. Here are the key principles:</p>
+            <ul>
+                <li><strong>Length Matters:</strong> Use at least 12-16 characters. Longer passwords are exponentially harder to crack.</li>
+                <li><strong>Mix Character Types:</strong> Combine uppercase letters, lowercase letters, numbers, and special characters.</li>
+                <li><strong>Avoid Common Patterns:</strong> Don't use sequential characters (abc, 123) or repeated characters (aaa, 111).</li>
+                <li><strong>No Dictionary Words:</strong> Avoid common words, names, or phrases that can be found in dictionaries.</li>
+                <li><strong>Unique for Each Account:</strong> Never reuse passwords across different websites or services.</li>
+                <li><strong>Use a Password Manager:</strong> Consider using a password manager to store and manage your passwords securely.</li>
+            </ul>
+            <p>Our password generator follows all these best practices to create cryptographically secure passwords that are resistant to brute-force attacks, dictionary attacks, and other common password cracking methods.</p>
+        </section>
+
+        <!-- Password Strength Checker Info -->
+        <section id="strength-checker-info" class="content-section">
+            <h2>Password Strength Checker</h2>
+            <p>Our password strength checker evaluates your password using multiple security criteria:</p>
+            <ul>
+                <li><strong>Length Analysis:</strong> Longer passwords receive higher scores (16+ characters is ideal).</li>
+                <li><strong>Character Variety:</strong> Using all character types (uppercase, lowercase, numbers, special) increases strength.</li>
+                <li><strong>Pattern Detection:</strong> We check for sequential patterns (abc, 123) and repeated characters that weaken passwords.</li>
+                <li><strong>Dictionary Check:</strong> Passwords are compared against common password lists to detect weak choices.</li>
+            </ul>
+            <p>The strength meter displays five levels:</p>
+            <ul>
+                <li><span class="strength-indicator very-weak">Very Weak</span> - Easily cracked, not recommended</li>
+                <li><span class="strength-indicator weak">Weak</span> - Vulnerable to attacks, should be improved</li>
+                <li><span class="strength-indicator medium">Medium</span> - Acceptable for low-security accounts</li>
+                <li><span class="strength-indicator strong">Strong</span> - Good for most accounts</li>
+                <li><span class="strength-indicator very-strong">Very Strong</span> - Excellent security, recommended for important accounts</li>
+            </ul>
+        </section>
+
+        <!-- Ad Placement 2 -->
+        <aside id="ad-placement-2" class="ad-container" aria-label="Advertisement">
+            <!-- AdSense ad unit will be placed here -->
+            <div class="ad-placeholder">Advertisement</div>
+        </aside>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="content-section">
+            <h2>FAQ</h2>
+            
+            <div class="faq-item">
+                <h3>Is this password generator really free?</h3>
+                <p>Yes! This password generator is completely free to use with no hidden costs, subscriptions, or limitations.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Are the generated passwords secure?</h3>
+                <p>Absolutely. We use the Web Crypto API (window.crypto.getRandomValues()) which provides cryptographically secure random number generation. This is the same technology used by security professionals and password managers.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do you store or transmit my passwords?</h3>
+                <p>No. All password generation happens entirely in your browser. Your passwords never leave your device and are never sent to any server. We have no way to see or access your generated passwords.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How long should my password be?</h3>
+                <p>We recommend at least 12-16 characters for most accounts. For highly sensitive accounts (banking, email), consider 20+ characters. Our generator supports passwords from 4 to 64 characters.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Should I use special characters in my password?</h3>
+                <p>Yes, including special characters significantly increases password strength by expanding the possible character combinations. However, some websites have restrictions on which special characters they accept.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What does "exclude similar characters" mean?</h3>
+                <p>This option removes characters that look similar and can be easily confused: lowercase 'l', uppercase 'I', number '1', uppercase 'O', and number '0'. This is useful when you need to type the password manually.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I use these passwords for my business accounts?</h3>
+                <p>Yes, the passwords generated are suitable for any use case, including business and enterprise accounts. However, always follow your organization's password policies and requirements.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What browsers are supported?</h3>
+                <p>This password generator works on all modern browsers including Chrome 90+, Firefox 88+, Safari 14+, and Edge 90+. It also works on mobile browsers.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <nav aria-label="Footer navigation">
+            <a href="about.html">About Us</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </nav>
+        <p class="copyright">&copy; 2024 Free Password Generator. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>

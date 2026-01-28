@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Testing
+*.test.js
+test-ui.html
+coverage/
+
+# Spec files
+.kiro/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

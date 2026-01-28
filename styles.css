@@ -1,0 +1,768 @@
+/* ===================================
+   CSS Reset and Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --background: #ffffff;
+    --surface: #f8fafc;
+    --border: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    
+    /* Strength Colors */
+    --strength-very-weak: #ef4444;
+    --strength-weak: #f97316;
+    --strength-medium: #eab308;
+    --strength-strong: #84cc16;
+    --strength-very-strong: #10b981;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================================
+   Header Styles
+   =================================== */
+
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    color: white;
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+header h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+header .subtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.95;
+}
+
+/* ===================================
+   Main Content Layout
+   =================================== */
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+/* ===================================
+   Generator Container
+   =================================== */
+
+.generator-container {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* ===================================
+   Password Display Section
+   =================================== */
+
+.password-display-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.password-display {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.password-output {
+    flex: 1;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-xl);
+    font-family: 'Courier New', monospace;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    color: var(--text-primary);
+    min-height: 48px;
+}
+
+.password-output:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.icon-button {
+    padding: var(--spacing-md);
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--font-size-xl);
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.icon-button .icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-primary);
+}
+
+.icon-button:hover {
+    background: var(--surface);
+    border-color: var(--primary-color);
+}
+
+.icon-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.primary-button {
+    flex: 1;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: white;
+    background: var(--primary-color);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    min-height: 48px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.primary-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+.primary-button:hover {
+    background: var(--primary-hover);
+}
+
+.primary-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.secondary-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    min-height: 44px;
+    transition: all 0.2s;
+}
+
+.secondary-button:hover {
+    background: var(--surface);
+    border-color: var(--secondary-color);
+}
+
+.secondary-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.copy-feedback {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--success);
+    font-weight: 600;
+    min-height: 1.5rem;
+    display: none;
+    padding: var(--spacing-sm);
+}
+
+.copy-feedback.show {
+    display: block;
+}
+
+/* ===================================
+   Strength Meter
+   =================================== */
+
+.strength-meter-section {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background: var(--background);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+#strength-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.strength-bar-container {
+    width: 100%;
+    height: 24px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid var(--border);
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: var(--radius-md);
+}
+
+.strength-text {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: var(--font-size-base);
+}
+
+/* Strength Level Colors */
+.strength-very-weak { color: var(--strength-very-weak); }
+.strength-weak { color: var(--strength-weak); }
+.strength-medium { color: var(--strength-medium); }
+.strength-strong { color: var(--strength-strong); }
+.strength-very-strong { color: var(--strength-very-strong); }
+
+/* ===================================
+   Configuration Section
+   =================================== */
+
+.config-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.config-section h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+.config-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.config-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.config-group input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: var(--radius-sm);
+    background: var(--border);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.config-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.config-group input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: none;
+}
+
+.config-group input[type="range"]:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.config-group input[type="text"],
+.config-group input[type="number"] {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    min-height: 44px;
+}
+
+.config-group input[type="text"]:focus,
+.config-group input[type="number"]:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-color: var(--primary-color);
+}
+
+.config-group fieldset {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.config-group legend {
+    font-weight: 600;
+    padding: 0 var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-label:focus-within {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+#length-value {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* ===================================
+   History Section
+   =================================== */
+
+.history-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.history-header h2 {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+}
+
+.history-list {
+    list-style: none;
+    display: none;
+}
+
+.history-list.has-items {
+    display: block;
+}
+
+.history-item {
+    margin-bottom: var(--spacing-sm);
+}
+
+.history-button {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: var(--font-size-base);
+    text-align: left;
+    transition: all 0.2s;
+    min-height: 44px;
+    color: var(--text-primary);
+}
+
+.history-button:hover {
+    background: var(--surface);
+    border-color: var(--primary-color);
+}
+
+.history-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.history-list li {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    transition: all 0.2s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.history-list li:hover {
+    background: var(--surface);
+    border-color: var(--primary-color);
+}
+
+.history-list li:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.history-empty {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: var(--spacing-lg);
+}
+
+.history-empty.hidden {
+    display: none;
+}
+
+/* ===================================
+   Security Notice
+   =================================== */
+
+.security-notice {
+    padding: var(--spacing-md);
+    background: #dbeafe;
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+/* ===================================
+   Ad Containers
+   =================================== */
+
+.ad-container {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-placeholder {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+/* ===================================
+   Content Sections
+   =================================== */
+
+.content-section {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-xl);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.content-section h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+.content-section h3 {
+    font-size: var(--font-size-xl);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.content-section p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.content-section ul {
+    margin-left: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.content-section li {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+}
+
+.content-section strong {
+    color: var(--text-primary);
+}
+
+.faq-item {
+    margin-bottom: var(--spacing-xl);
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.strength-indicator {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+}
+
+/* ===================================
+   Footer
+   =================================== */
+
+footer {
+    background: var(--text-primary);
+    color: white;
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    margin-top: auto;
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-md);
+}
+
+footer nav a {
+    color: white;
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    transition: opacity 0.2s;
+    padding: var(--spacing-sm);
+}
+
+footer nav a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+footer nav a:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+.copyright {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+}
+
+/* ===================================
+   Compliance Pages Styles
+   =================================== */
+
+.important-notice {
+    background-color: #fef3c7;
+    border-left: 4px solid var(--warning);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    border-radius: var(--radius-md);
+}
+
+.important-notice p {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0;
+}
+
+.cta-section {
+    text-align: center;
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--border);
+}
+
+.cta-section .primary-button {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-lg);
+}
+
+/* ===================================
+   Responsive Design - Mobile First
+   =================================== */
+
+/* Small devices (320px and up) - Base styles above */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .generator-container {
+        padding: var(--spacing-xl) 2rem;
+    }
+    
+    .config-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .config-section h2 {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+    main {
+        padding: var(--spacing-xl) var(--spacing-xl);
+    }
+    
+    .generator-container {
+        padding: 2rem 3rem;
+    }
+}
+
+/* Extra large devices (1920px and up) */
+@media (min-width: 1920px) {
+    main {
+        max-width: 1400px;
+    }
+}
+
+/* ===================================
+   Accessibility - High Contrast Mode
+   =================================== */
+
+@media (prefers-contrast: high) {
+    :root {
+        --border: #000000;
+        --text-secondary: #000000;
+    }
+    
+    .password-output,
+    .icon-button,
+    .config-group input {
+        border-width: 3px;
+    }
+}
+
+/* ===================================
+   Focus Visible Enhancement
+   =================================== */
+
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+
+@media print {
+    header,
+    footer,
+    .ad-container,
+    .action-buttons {
+        display: none;
+    }
+    
+    .password-output {
+        border: 2px solid #000;
+    }
+}
